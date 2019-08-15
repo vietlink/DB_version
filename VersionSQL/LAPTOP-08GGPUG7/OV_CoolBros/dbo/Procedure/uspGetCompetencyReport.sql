@@ -5,7 +5,7 @@
 -- Create date: 
 -- Description:	
 -- =============================================
-create PROCEDURE [dbo].[uspGetCompetencyReport] 
+CREATE PROCEDURE [dbo].[uspGetCompetencyReport] 
 	-- Add the parameters for the stored procedure here
 	 ( @empIDList varchar(max), @divisionList varchar(max), @departmentList varchar(max), @locationList varchar(max), @statusList varchar(max), @typeList varchar(max), @competencyIDList varchar(max), @sortBy varchar(max), @groupBy varchar(max))
 
@@ -78,7 +78,7 @@ BEGIN
     ELSE IF LEN(@competencyIDList) > 0 BEGIN -- if text existst without a , then assume 1 id
 		INSERT INTO @competencyIDTable(competencyID) VALUES(cast(@competencyIDList as int));	
     END	
-	
+	print @competencyIDList;
 	SELECT 
 		e.id as EmpID,
 		p.id as posID,
