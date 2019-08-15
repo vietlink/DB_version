@@ -1,0 +1,25 @@
+/****** Object:  Table [dbo].[RoleUser]    Committed by VersionSQL https://www.versionsql.com ******/
+
+SET ANSI_NULLS ON
+SET QUOTED_IDENTIFIER ON
+CREATE TABLE [dbo].[RoleUser](
+	[id] [dbo].[udtId] IDENTITY(1,1) NOT NULL,
+	[roleid] [dbo].[udtId] NOT NULL,
+	[userid] [dbo].[udtId] NOT NULL,
+ CONSTRAINT [pkRoleUser] PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, FILLFACTOR = 90) ON [PRIMARY]
+) ON [PRIMARY]
+
+CREATE UNIQUE NONCLUSTERED INDEX [idxRoleUser] ON [dbo].[RoleUser]
+(
+	[roleid] ASC,
+	[userid] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, FILLFACTOR = 90) ON [PRIMARY]
+ALTER TABLE [dbo].[RoleUser]  WITH CHECK ADD  CONSTRAINT [FK_RoleUser_Role] FOREIGN KEY([roleid])
+REFERENCES [dbo].[Role] ([id])
+ALTER TABLE [dbo].[RoleUser] CHECK CONSTRAINT [FK_RoleUser_Role]
+ALTER TABLE [dbo].[RoleUser]  WITH CHECK ADD  CONSTRAINT [FK_RoleUser_User] FOREIGN KEY([userid])
+REFERENCES [dbo].[User] ([id])
+ALTER TABLE [dbo].[RoleUser] CHECK CONSTRAINT [FK_RoleUser_User]
